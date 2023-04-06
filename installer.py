@@ -235,7 +235,6 @@ class Directories:
     def __init__(self):
         workdir = os.getcwd()
         user_home_directory = pathlib.Path.home()
-        self.tmp = os.path.join(workdir, 'tmp')
         self.virtualenv = 'gimpenv3'
         self.openvino_ai_plugin = os.path.join(workdir, 'openvino-ai')
         self.user_openvino_ai_plugin = os.path.join(user_home_directory, 'openvino-ai-plugins-gimp')
@@ -254,7 +253,6 @@ def main():
     reinstall = False
 
     d = Directories()
-    stable_diffusion_models_dir = os.path.join(d.tmp, 'sd_models')
     openvino_ai_plugin_url = 'https://github.com/intel/openvino-ai-plugins-gimp.git'
     stable_diffusion_models_url = 'https://huggingface.co/bes-dev/stable-diffusion-v1-4-openvino'
     patch_file_urls = [
@@ -267,7 +265,7 @@ def main():
     venv_path = os.path.join(d.openvino_ai_plugin, d.virtualenv)
 
     # --[ SYS ]-- init all dir structure -------------------------------------
-    for this_d in [d.openvino_ai_plugin, d.tmp, d.user_openvino_ai_plugin, d.user_weights]:
+    for this_d in [d.openvino_ai_plugin, d.user_openvino_ai_plugin, d.user_weights]:
         init_dir(this_d)
 
     logging.debug(' --[ Program started ]----- ')
@@ -321,8 +319,6 @@ def main():
     for u in patch_file_urls:
         if not os.path.isfile(os.path.join(d.user_weights_stable_diffusion, u.split('/')[-1])):
             download_url(u, d.user_weights_stable_diffusion)
-
-    logging.debug(' --[ User related stuff ]--')
 
 
 if __name__ == '__main__':
