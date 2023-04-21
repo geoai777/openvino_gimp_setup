@@ -6,4 +6,4 @@ Frankly I found installation process a bit complicated, so I wrote installer tha
 Only thing is needed after you run this script is to add `<git clone folder>\gimpopenvino\plugins` your GIMP 
 plugins folder `[Edit-> Preferences-> Folders-> Plugins]`.
 
-
+/!\ Important note. Plugin pack (now Apr. 2023) appears to be working only with Gimp 2.99.10-2 development version. 
